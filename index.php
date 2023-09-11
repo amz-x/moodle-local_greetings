@@ -145,7 +145,7 @@ if ($data = $messageform->get_data()) {
 
     require_capability('local/greetings:postmessages', $context);
 
-    $id      = optional_param('id', NULL, PARAM_INT);
+    $id      = optional_param('id', null, PARAM_INT);
     $message = required_param('message', PARAM_TEXT);
 
     if (!empty($message)) {

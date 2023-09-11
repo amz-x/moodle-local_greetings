@@ -24,7 +24,8 @@
 /**
  * Greet logged in / not logged in user message in country locale.
  *
- * @param StdClass $user user object.
+ * @param \stdClass $user user object.
+ * @return string
  */
 function local_greetings_get_greeting($user) {
     if ($user == null || isguestuser()) {
@@ -33,8 +34,17 @@ function local_greetings_get_greeting($user) {
 
     $country = isset($user->country) ? $user->country : '';
     switch ($country) {
+        case 'AU':
+            $langstr = 'greetinguserau';
+            break;
         case 'ES':
             $langstr = 'greetinguseres';
+            break;
+        case 'FJ':
+            $langstr = 'greetinguserfj';
+            break;
+        case 'NZ':
+            $langstr = 'greetingusernz';
             break;
         default:
             $langstr = 'greetinguser';
