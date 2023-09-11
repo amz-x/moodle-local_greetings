@@ -29,7 +29,7 @@
  * @param StdClass $user user object.
  */
 function local_greetings_get_greeting($user) {
-    if ($user == null || !isloggedin()) {
+    if ($user == null || isguestuser()) {
         return get_string('greetinguser', 'local_greetings', 'user');
     }
 

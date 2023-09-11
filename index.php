@@ -34,13 +34,17 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading(get_string('pluginname', 'local_greetings'));
 
+require_login();
+
 echo $OUTPUT->header();
 
 echo $OUTPUT->heading(local_greetings_get_greeting($USER), 4);
 
 $messageform = new \local_greetings\form\message_form();
 
-$messageform->display();
+if (!isguestuser()) {
+    $messageform->display();
+}
 
 $userfields = \core_user\fields::for_name()->with_identity($context);
 $userfieldssql = $userfields->get_sql('u');
@@ -57,7 +61,7 @@ echo $OUTPUT->box_start('card-columns');
 foreach ($messages as $m) {
     echo html_writer::start_tag('div', array('class' => 'card'));
     echo html_writer::start_tag('div', array('class' => 'card-body'));
-    echo html_writer::tag('p', $m->message, array('class' => 'card-text'));
+    echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), array('class' => 'card-text'));
     echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), array('class' => 'card-text'));
     echo html_writer::start_tag('p', array('class' => 'card-text'));
     echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
@@ -68,17 +72,20 @@ foreach ($messages as $m) {
 
 echo $OUTPUT->box_end();
 
-if ($data = $messageform->get_data()) {
-    $message = required_param('message', PARAM_TEXT);
+if (!isguestuser()) {
+    if ($data = $messageform->get_data()) {
+        $message = required_param('message', PARAM_TEXT);
 
-    if (!empty($message)) {
-        $record = new stdClass;
-        $record->message = $message;
-        $record->timecreated = time();
-        $record->userid = $USER->id;
+        if (!empty($message)) {
+            $record = new stdClass;
+            $record->message = $message;
+            $record->timecreated = time();
+            $record->userid = $USER->id;
 
-        $DB->insert_record('local_greetings_messages', $record);
+            $DB->insert_record('local_greetings_messages', $record);
+        }
     }
 }
+
 
 echo $OUTPUT->footer();
