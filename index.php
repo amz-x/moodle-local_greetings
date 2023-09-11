@@ -43,12 +43,13 @@ echo $OUTPUT->heading(local_greetings_get_greeting($USER), 4);
 $messageform   = new \local_greetings\form\message_form();
 $allowpost     = has_capability('local/greetings:postmessages', $context);
 $deleteanypost = has_capability('local/greetings:deleteanymessage', $context);
+$deleteownpost = has_capability('local/greetings:deleteownmessage', $context);
 $action        = optional_param('action', '', PARAM_TEXT);
 
 if ($action == 'del') {
     $id = required_param('id', PARAM_TEXT);
 
-    if ($deleteanypost) {
+    if ($deleteanypost || $deleteownpost) {
         $params = array('id' => $id);
         $DB->delete_records('local_greetings_messages', $params);
     }
@@ -83,7 +84,7 @@ if ($allowview) {
         echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
         echo html_writer::end_tag('p');
         echo html_writer::end_tag('div');
-        if ($deleteanypost) {
+        if ($deleteanypost || ($deleteownpost && $m->userid == $USER->id)) {
             echo html_writer::start_tag('p', array('class' => 'card-footer text-center mb-0'));
             echo html_writer::link(
                 new moodle_url(
@@ -115,6 +116,8 @@ if ($data = $messageform->get_data()) {
         $record->userid = $USER->id;
 
         $DB->insert_record('local_greetings_messages', $record);
+
+        redirect($PAGE->url);
     }
 }
 
