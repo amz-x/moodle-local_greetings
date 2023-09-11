@@ -42,10 +42,21 @@ $messageform = new \local_greetings\form\message_form();
 
 $messageform->display();
 
+$messages = $DB->get_records('local_greetings_messages');
+foreach ($messages as $m) {
+    echo '<p>' . $m->message . ', ' . $m->timecreated . '</p>';
+}
+
 if ($data = $messageform->get_data()) {
     $message = required_param('message', PARAM_TEXT);
 
-    echo $OUTPUT->heading($message, 4);
+    if (!empty($message)) {
+        $record = new stdClass;
+        $record->message = $message;
+        $record->timecreated = time();
+
+        $DB->insert_record('local_greetings_messages', $record);
+    }
 }
 
 echo $OUTPUT->footer();
