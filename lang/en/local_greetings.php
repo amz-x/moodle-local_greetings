@@ -22,7 +22,6 @@
  * @copyright   2023 Christopher Crouse <christopher@opencollab.co.za>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Greetings';

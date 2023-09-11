@@ -22,15 +22,13 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Define upgrade steps to be performed to upgrade the plugin from the old version to the current one.
  *
  * @param int $oldversion Version number the plugin is being upgraded from.
  */
-function xmldb_local_greetings_upgrade($oldversion)
-{
+function xmldb_local_greetings_upgrade($oldversion) {
+
     global $DB;
     $dbman = $DB->get_manager();
 
