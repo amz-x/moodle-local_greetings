@@ -34,6 +34,9 @@ class message_form extends \moodleform {
     public function definition() {
         $mform = $this->_form; // Don't forget the underscore!
 
+        $mform->addElement('hidden', 'id', null);
+        $mform->setType('id', PARAM_INT);
+
         $mform->addElement('textarea', 'message', get_string('yourmessage', 'local_greetings'));
         $mform->setType('message', PARAM_TEXT);
 

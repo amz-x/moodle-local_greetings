@@ -37,25 +37,34 @@ require_login();
 
 echo $OUTPUT->header();
 
-echo $OUTPUT->heading(local_greetings_get_greeting($USER), 4);
+echo $OUTPUT->heading(local_greetings_get_greeting($USER), 2);
 
 $messageform   = new \local_greetings\form\message_form();
 
-$allowview     = has_capability('local/greetings:viewmessages', $context);
-$allowpost     = has_capability('local/greetings:postmessages', $context);
-$deleteanypost = has_capability('local/greetings:deleteanymessage', $context);
-$deleteownpost = has_capability('local/greetings:deleteownmessage', $context);
-$action        = optional_param('action', '', PARAM_TEXT);
+$allowview      = has_capability('local/greetings:viewmessages', $context);
+$allowpost      = has_capability('local/greetings:postmessages', $context);
+$deleteanypost  = has_capability('local/greetings:deleteanymessage', $context);
+$deleteownpost  = has_capability('local/greetings:deleteownmessage', $context);
+$editanypost    = has_capability('local/greetings:editanymessage', $context);
+$editownpost    = has_capability('local/greetings:editownmessage', $context);
+$action         = optional_param('action', '', PARAM_TEXT);
 
-if ($action == 'del') {
+if ($action == 'del' || $action == 'edit') {
     require_sesskey();
     $id = required_param('id', PARAM_TEXT);
+    $params = array('id' => $id);
 
-    if ($deleteanypost || $deleteownpost) {
-        $params = array('id' => $id);
+    if ($action == 'del' && ($deleteanypost || $deleteownpost)) {
         $DB->delete_records('local_greetings_messages', $params);
-
         redirect($PAGE->url);
+    }
+
+    if ($action == 'edit' && ($editanypost || $editownpost)) {
+        $record     = $DB->get_record('local_greetings_messages', $params);
+        $messageform->set_data(array(
+            'id'      => $record->id,
+            'message' => $record->message
+        ));
     }
 }
 
@@ -88,8 +97,25 @@ if ($allowview) {
         echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
         echo html_writer::end_tag('p');
         echo html_writer::end_tag('div');
+        echo html_writer::start_tag('p', array('class' => 'card-footer text-center mb-0'));
+        if ($editanypost || ($editownpost && $m->userid == $USER->id)) {
+            echo html_writer::link(
+                new moodle_url(
+                    '/local/greetings/index.php',
+                    array(
+                        'action'    => 'edit',
+                        'id'        => $m->id,
+                        'sesskey'   => sesskey()
+                    )
+                ),
+                $OUTPUT->pix_icon('t/edit', ''),
+                [
+                    'role' => 'button',
+                    'title'  => get_string('edit')
+                ]
+            );
+        }
         if ($deleteanypost || ($deleteownpost && $m->userid == $USER->id)) {
-            echo html_writer::start_tag('p', array('class' => 'card-footer text-center mb-0'));
             echo html_writer::link(
                 new moodle_url(
                     '/local/greetings/index.php',
@@ -99,10 +125,14 @@ if ($allowview) {
                         'sesskey'   => sesskey()
                     )
                 ),
-                $OUTPUT->pix_icon('t/delete', '') . get_string('delete')
+                $OUTPUT->pix_icon('t/delete', ''),
+                [
+                    'role' => 'button',
+                    'title'  => get_string('delete')
+                ]
             );
-            echo html_writer::end_tag('p');
         }
+        echo html_writer::end_tag('p');
         echo html_writer::end_tag('div');
     }
 
@@ -115,15 +145,21 @@ if ($data = $messageform->get_data()) {
 
     require_capability('local/greetings:postmessages', $context);
 
+    $id      = optional_param('id', NULL, PARAM_INT);
     $message = required_param('message', PARAM_TEXT);
 
     if (!empty($message)) {
         $record = new stdClass;
         $record->message = $message;
-        $record->timecreated = time();
         $record->userid = $USER->id;
 
-        $DB->insert_record('local_greetings_messages', $record);
+        if (isset($id)) {
+            $record->id = $id;
+            $DB->update_record('local_greetings_messages', $record);
+        } else {
+            $record->timecreated = time();
+            $DB->insert_record('local_greetings_messages', $record);
+        }
 
         redirect($PAGE->url);
     }
