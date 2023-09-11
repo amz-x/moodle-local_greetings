@@ -15,10 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
- *
  * @package     local_greetings
- * @copyright   2023 Christopher Crouse <christopher@opencollab.co.za>
+ * @category    db/upgrade
+ * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

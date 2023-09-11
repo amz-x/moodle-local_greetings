@@ -15,10 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
- *
  * @package     local_greetings
- * @copyright   2023 Christopher Crouse <christopher@opencollab.co.za>
+ * @category    index
+ * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -78,8 +77,10 @@ if ($allowview) {
 
     echo $OUTPUT->box_start('card-columns');
 
+    $cardbackgroundcolor = get_config('local_greetings', 'messagecardbgcolor');
+
     foreach ($messages as $m) {
-        echo html_writer::start_tag('div', array('class' => 'card'));
+        echo html_writer::start_tag('div', array('class' => 'card', 'style' => "background: $cardbackgroundcolor"));
         echo html_writer::start_tag('div', array('class' => 'card-body'));
         echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), array('class' => 'card-text'));
         echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), array('class' => 'card-text'));

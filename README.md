@@ -1,4 +1,4 @@
-# Greetings #
+# Greetings Moodle Plugin #
 
 TODO Describe the plugin shortly here.
 
@@ -23,13 +23,15 @@ Notifications_ to complete the installation.
 
 Alternatively, you can run
 
+    ```bash
     $ php admin/cli/upgrade.php
+    ```
 
 to complete the installation from the command line.
 
 ## License ##
 
-2023 Christopher Crouse <christopher@opencollab.co.za>
+2023 Christopher Crouse <mail@amz-x.com>
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software

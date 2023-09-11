@@ -16,28 +16,25 @@
 
 /**
  * @package     local_greetings
+ * @category    settings
  * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_greetings\form;
-
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->libdir . '/formslib.php');
+if ($hassiteconfig) {
+    $settings = new admin_settingpage('local_greetings', get_string('pluginname', 'local_greetings'));
+    $ADMIN->add('localplugins', $settings);
 
-class message_form extends \moodleform {
+    if ($ADMIN->fulltree) {
+        require_once($CFG->dirroot . '/local/greetings/lib.php');
 
-    /**
-     * Define the form.
-     */
-    public function definition() {
-        $mform = $this->_form; // Don't forget the underscore!
-
-        $mform->addElement('textarea', 'message', get_string('yourmessage', 'local_greetings'));
-        $mform->setType('message', PARAM_TEXT);
-
-        $submitlabel = get_string('submit');
-        $mform->addElement('submit', 'submitmessage', $submitlabel);
+        $settings->add(new admin_setting_configtext(
+            'local_greetings/messagecardbgcolor',
+            get_string('messagecardbgcolor', 'local_greetings'),
+            get_string('messagecardbgcolordesc', 'local_greetings'),
+            '#FFFFFF',
+        ));
     }
 }

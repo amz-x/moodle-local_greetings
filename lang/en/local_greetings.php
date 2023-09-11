@@ -19,24 +19,22 @@
  *
  * @package     local_greetings
  * @category    string
- * @copyright   2023 Christopher Crouse <christopher@opencollab.co.za>
+ * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Greetings';
-
+$string['pluginname']                 = 'Greetings';
+$string['messagecardbgcolor']         = 'Message card color';
+$string['messagecardbgcolordesc']     = 'Background color of the message card';
 $string['greetings:deleteanymessage'] = 'Delete messages on the Greetings wall';
 $string['greetings:deleteownmessage'] = 'Delete owned message on the Greetings wall';
-$string['greetings:viewmessages'] = 'View messages on the Greetings wall';
-$string['greetings:postmessages'] = 'Post a new message on the Greetings wall';
-
-$string['greetinguser'] = 'Greetings, {$a}.';
-$string['greetinguserau'] = 'Hello, {$a}.';
-$string['greetinguseres'] = 'Hola, {$a}.';
-$string['greetinguserfj'] = 'Bula, {$a}.';
-$string['greetingusernz'] = 'Kia Ora, {$a}.';
-
-$string['yourmessage'] = 'Your message';
-
-$string['postedby'] = 'Posted by {$a}.';
+$string['greetings:viewmessages']     = 'View messages on the Greetings wall';
+$string['greetings:postmessages']     = 'Post a new message on the Greetings wall';
+$string['greetinguser']               = 'Greetings, {$a}.';
+$string['greetinguserau']             = 'Hello, {$a}.';
+$string['greetinguseres']             = 'Hola, {$a}.';
+$string['greetinguserfj']             = 'Bula, {$a}.';
+$string['greetingusernz']             = 'Kia Ora, {$a}.';
+$string['yourmessage']                = 'Your message';
+$string['postedby']                   = 'Posted by {$a}.';
