@@ -36,6 +36,16 @@ $PAGE->set_heading(get_string('pluginname', 'local_greetings'));
 
 echo $OUTPUT->header();
 
-echo local_greetings_get_greeting($USER);
+echo $OUTPUT->heading(local_greetings_get_greeting($USER), 4);
+
+$messageform = new \local_greetings\form\message_form();
+
+$messageform->display();
+
+if ($data = $messageform->get_data()) {
+    $message = required_param('message', PARAM_TEXT);
+
+    echo $OUTPUT->heading($message, 4);
+}
 
 echo $OUTPUT->footer();
