@@ -24,8 +24,29 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_greetings';
-$plugin->release = '0.1.0';
-$plugin->version = 2023091102;
-$plugin->requires = 2021051700;
-$plugin->maturity = MATURITY_ALPHA;
+$capabilities = array(
+    'local/greetings:deleteanymessage' => array(
+        'riskbitmask' => RISK_DATALOSS,
+        'captype' => 'delete',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW,
+        )
+    ),
+    'local/greetings:postmessages' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'user' => CAP_ALLOW,
+        )
+    ),
+    'local/greetings:viewmessages' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'user' => CAP_ALLOW,
+        )
+    ),
+);
