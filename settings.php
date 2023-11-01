@@ -15,8 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
+ * Plugin admin settings
+ * 
  * @package     local_greetings
- * @category    settings
  * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

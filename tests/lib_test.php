@@ -15,8 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
+ * PHPUnit plugin generator tests
+ * 
  * @package     local_greetings
- * @category    tests
  * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,6 +29,10 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once($CFG->dirroot . '/local/greetings/lib.php');
 
+/**
+ * Tests for the library functions within the plugin
+ * 
+ */
 class lib_test extends \advanced_testcase {
 
     /**
