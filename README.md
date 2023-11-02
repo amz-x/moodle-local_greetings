@@ -1,8 +1,6 @@
 # Moodle Greetings Plugin #
 
-TODO Describe the plugin shortly here.
-
-TODO Provide more detailed description here.
+Plugin that is part of the Moodle Developer Basics course.
 
 ## Installing via uploaded ZIP file ##
 
