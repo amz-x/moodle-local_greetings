@@ -18,10 +18,10 @@
  * Plugin strings are defined here.
  *
  * @package     local_greetings
- * @category    string
  * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname']                 = 'Greetings';

@@ -18,7 +18,6 @@
  * Plugin version and other meta-data are defined here.
  *
  * @package     local_greetings
- * @category    version
  * @copyright   2023 Christopher Crouse <mail@amz-x.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
