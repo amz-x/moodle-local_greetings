@@ -1,4 +1,4 @@
-# Greetings Moodle Plugin #
+# Moodle Greetings Plugin #
 
 TODO Describe the plugin shortly here.
 
