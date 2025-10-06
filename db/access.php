@@ -36,7 +36,7 @@ $capabilities = array(
             'teacher'               => CAP_PREVENT,
             'student'               => CAP_PREVENT,
             'user'                  => CAP_PREVENT,
-        )
+        ),
     ),
     'local/greetings:deleteownmessage' => array(
         'riskbitmask'               => RISK_DATALOSS,
@@ -49,7 +49,7 @@ $capabilities = array(
             'teacher'               => CAP_ALLOW,
             'student'               => CAP_ALLOW,
             'user'                  => CAP_ALLOW,
-        )
+        ),
     ),
     'local/greetings:editanymessage' => array(
         'riskbitmask'               => RISK_DATALOSS,
@@ -62,7 +62,7 @@ $capabilities = array(
             'teacher'               => CAP_PREVENT,
             'student'               => CAP_PREVENT,
             'user'                  => CAP_PREVENT,
-        )
+        ),
     ),
     'local/greetings:editownmessage' => array(
         'riskbitmask'               => RISK_DATALOSS,
@@ -75,7 +75,7 @@ $capabilities = array(
             'teacher'               => CAP_ALLOW,
             'student'               => CAP_ALLOW,
             'user'                  => CAP_ALLOW,
-        )
+        ),
     ),
     'local/greetings:postmessages' => array(
         'riskbitmask'           => RISK_SPAM,
@@ -83,7 +83,7 @@ $capabilities = array(
         'contextlevel'          => CONTEXT_SYSTEM,
         'archetypes' => array(
             'user'              => CAP_ALLOW,
-        )
+        ),
     ),
     'local/greetings:viewmessages' => array(
         'riskbitmask' => RISK_SPAM,
@@ -91,6 +91,6 @@ $capabilities = array(
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
             'user' => CAP_ALLOW,
-        )
+        ),
     ),
 );

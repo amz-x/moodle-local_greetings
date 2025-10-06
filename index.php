@@ -64,7 +64,7 @@ if ($action == 'del' || $action == 'edit') {
         $record     = $DB->get_record('local_greetings_messages', $params);
         $messageform->set_data(array(
             'id'      => $record->id,
-            'message' => $record->message
+            'message' => $record->message,
         ));
     }
 }
@@ -106,13 +106,13 @@ if ($allowview) {
                     array(
                         'action'    => 'edit',
                         'id'        => $m->id,
-                        'sesskey'   => sesskey()
+                        'sesskey'   => sesskey(),
                     )
                 ),
                 $OUTPUT->pix_icon('t/edit', ''),
                 [
                     'role' => 'button',
-                    'title'  => get_string('edit')
+                    'title'  => get_string('edit'),
                 ]
             );
         }
@@ -123,13 +123,13 @@ if ($allowview) {
                     array(
                         'action'    => 'del',
                         'id'        => $m->id,
-                        'sesskey'   => sesskey()
+                        'sesskey'   => sesskey(),
                     )
                 ),
                 $OUTPUT->pix_icon('t/delete', ''),
                 [
                     'role' => 'button',
-                    'title'  => get_string('delete')
+                    'title'  => get_string('delete'),
                 ]
             );
         }
