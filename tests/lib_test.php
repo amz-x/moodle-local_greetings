@@ -39,23 +39,23 @@ class lib_test extends \advanced_testcase {
      *
      * @return array List of data sets - (string) data set name => (array) data
      */
-    public function local_greetings_get_greeting_provider() {
+    public function local_greetings_get_greeting_provider(): array {
         return [
             'No user' => [ // Not logged in.
                 'country' => null,
-                'langstring' => 'greetinguser'
+                'langstring' => 'greetinguser',
             ],
             'AU user' => [
                 'country' => 'AU',
-                'langstring' => 'greetinguserau'
+                'langstring' => 'greetinguserau',
             ],
             'ES user' => [
                 'country' => 'ES',
-                'langstring' => 'greetinguseres'
+                'langstring' => 'greetinguseres',
             ],
             'VU user' => [ // Logged in user, but no local greeting.
                 'country' => 'VU',
-                'langstring' => 'greetinguser'
+                'langstring' => 'greetinguser',
             ],
         ];
     }
